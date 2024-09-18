@@ -67,7 +67,7 @@
             <LoaderComponent />
         </div>
         <div v-else>
-            <div class="text-end my-4">
+            <div class="text-end my-4 text-white">
                 <h4>Total Cards: {{ cards.length }}</h4>
             </div>
             <div class="row justify-content-center">
