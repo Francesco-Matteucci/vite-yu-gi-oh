@@ -45,7 +45,7 @@
         width: 100%;
         height: 100%;
         transform-style: preserve-3d;
-        transition: transform 1s;
+        transition: transform 1.2s;
     }
 
     .container-card:hover .card-yugioh {
@@ -89,6 +89,11 @@
     .card-type {
         font-size: 0.9rem;
         font-weight: bold;
+    }
+
+    .card-title,
+    .card-type {
+        font-family: "Krub", sans-serif;
     }
 
     .card-text {
