@@ -1,11 +1,13 @@
 <script>
     import axios from 'axios';
     import CardComponent from './CardComponent.vue'
+    import LoaderComponent from './LoaderComponent.vue'
 
     export default {
         name: 'AppMain',
         components: {
-            CardComponent
+            CardComponent,
+            LoaderComponent
         },
         data() {
             return {
@@ -41,10 +43,10 @@
 
 <template>
     <main class="container mt-4">
-        <div v-if="loading" class="text-center">
-            <p>Loading...</p>
+        <div v-if="loading">
+            <LoaderComponent />
         </div>
-        <div v-else class="row justify-content-center p-4">
+        <div v-else class="row justify-content-center">
             <CardComponent v-for="card in cards" :key="card.id" :card="card" />
         </div>
     </main>
