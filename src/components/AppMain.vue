@@ -11,7 +11,7 @@
 
 <template>
     <main class="container mt-4">
-        <div class="row">
+        <div class="row justify-content-center">
             <CardComponent v-for="n in 12" :key="n" />
         </div>
     </main>
