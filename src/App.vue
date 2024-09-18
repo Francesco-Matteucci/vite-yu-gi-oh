@@ -17,4 +17,8 @@
   </div>
 </template>
 
-<style scoped></style>
+<style lang="scss">
+  body {
+    background-color: #D48F3B;
+  }
+</style>
