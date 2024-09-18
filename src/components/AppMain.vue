@@ -66,8 +66,13 @@
         <div v-if="loading">
             <LoaderComponent />
         </div>
-        <div v-else class="row justify-content-center">
-            <CardComponent v-for="card in cards" :key="card.id" :card="card" />
+        <div v-else>
+            <div class="text-end my-4">
+                <h4>Total Cards: {{ cards.length }}</h4>
+            </div>
+            <div class="row justify-content-center">
+                <CardComponent v-for="card in cards" :key="card.id" :card="card" />
+            </div>
         </div>
     </main>
 </template>
