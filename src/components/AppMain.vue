@@ -23,6 +23,12 @@
         },
         methods: {
             fetchCards() {
+                // Simulo un caricamento di 3 secondi
+                const MIN_LOADING_TIME = 3000;
+
+                // Creo una variabile per tenere traccia del tempo iniziale
+                const startTime = Date.now();
+
                 axios
                     .get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=50&offset=0')
                     .then((response) => {
@@ -33,12 +39,26 @@
                         console.error('Errore nella chiamata API:', error);
                     })
                     .finally(() => {
-                        // Una volta completato, disattivo il caricamento
-                        this.loading = false;
+
+                        // Calcolo il tempo trascorso dalla chiamata API
+                        const elapsedTime = Date.now() - startTime;
+
+                        // Se il caricamento è stato troppo veloce, aspetto che passino i 3 secondi
+                        const remainingTime = MIN_LOADING_TIME - elapsedTime;
+
+                        if (remainingTime > 0) {
+                            setTimeout(() => {
+                                this.loading = false;
+                            }, remainingTime);
+                        } else {
+                            // Nel caso il caricamento avesse gia impiegato almeno 3 secondi, nascondo il loader
+                            this.loading = false;
+                        }
                     });
             }
         }
     }
+
 </script>
 
 <template>
