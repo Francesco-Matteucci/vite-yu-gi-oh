@@ -24,7 +24,7 @@
         methods: {
             fetchCards() {
                 // Simulo un caricamento di 3 secondi
-                const MIN_LOADING_TIME = 3000;
+                const minLoadingTime = 3000;
 
                 // Creo una variabile per tenere traccia del tempo iniziale
                 const startTime = Date.now();
@@ -44,7 +44,7 @@
                         const elapsedTime = Date.now() - startTime;
 
                         // Se il caricamento è stato troppo veloce, aspetto che passino i 3 secondi
-                        const remainingTime = MIN_LOADING_TIME - elapsedTime;
+                        const remainingTime = minLoadingTime - elapsedTime;
 
                         if (remainingTime > 0) {
                             setTimeout(() => {
