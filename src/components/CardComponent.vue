@@ -54,6 +54,7 @@
 
     #yugi-card:hover .card-text {
         opacity: 1;
+        transform: translateY(0);
     }
 
     .front,
@@ -98,6 +99,7 @@
 
     .card-text {
         opacity: 0;
+        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
     }
 
 </style>
