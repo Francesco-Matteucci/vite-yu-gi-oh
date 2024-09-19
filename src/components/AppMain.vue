@@ -2,19 +2,23 @@
     import axios from 'axios';
     import CardComponent from './CardComponent.vue'
     import LoaderComponent from './LoaderComponent.vue'
+    import ArchetypeSelect from './ArchetypeSelect.vue';
 
     export default {
         name: 'AppMain',
         components: {
             CardComponent,
-            LoaderComponent
+            LoaderComponent,
+            ArchetypeSelect
         },
         data() {
             return {
                 // Dati per le carte
                 cards: [],
                 // Flag di caricamento
-                loading: true
+                loading: true,
+                // Archetipo selezionato
+                selectedArchetype: ''
             };
         },
         mounted() {
@@ -55,10 +59,15 @@
                             this.loading = false;
                         }
                     });
+            },
+            // Creo un metodo per gestire l'archetipo selezionato
+            handleArchetypeSelected(archetype) {
+                this.selectedArchetype = archetype;
+                console.log("Archetipo selezionato:", this.selectedArchetype);
+
             }
         }
     }
-
 </script>
 
 <template>
@@ -67,6 +76,8 @@
             <LoaderComponent />
         </div>
         <div v-else>
+            <ArchetypeSelect @archetype-selected="handleArchetypeSelected" />
+
             <div class="text-end my-4 text-white">
                 <h4>Total Cards: {{ cards.length }}</h4>
             </div>
