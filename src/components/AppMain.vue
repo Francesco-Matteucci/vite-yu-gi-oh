@@ -3,13 +3,15 @@
     import CardComponent from './CardComponent.vue'
     import LoaderComponent from './LoaderComponent.vue'
     import ArchetypeSelect from './ArchetypeSelect.vue'
+    import CardDetailModal from './CardDetailModal.vue'
 
     export default {
         name: 'AppMain',
         components: {
             CardComponent,
             LoaderComponent,
-            ArchetypeSelect
+            ArchetypeSelect,
+            CardDetailModal
         },
         data() {
             return {
@@ -18,7 +20,11 @@
                 // Flag di caricamento
                 loading: true,
                 // Archetipo selezionato
-                selectedArchetype: ''
+                selectedArchetype: '',
+                // Carta selezionata per la modal
+                selectedCard: null,
+                // Flag per mostrare o nascondere la modal
+                showModal: false
             };
         },
         mounted() {
@@ -54,6 +60,14 @@
 
                 // Effettuo una chiamata API per filtrare le carte dell'archetipo selezionato
                 this.fetchCards(archetype);
+            },
+            openCardModal(card) {
+                this.selectedCard = card;
+                this.showModal = true;
+            },
+            closeCardModal() {
+                this.showModal = false;
+                this.selectedCard = null;
             }
         }
     }
@@ -75,9 +89,13 @@
 
             <!-- Visualizzo le carte -->
             <div class="row justify-content-center">
-                <CardComponent v-for="card in cards" :key="card.id" :card="card" />
+                <CardComponent v-for="card in cards" :key="card.id" :card="card" @click="openCardModal(card)" />
             </div>
         </div>
+
+        <!-- Modal per i dettagli della carta -->
+        <CardDetailModal v-if="selectedCard" :card="selectedCard" :showModal="showModal"
+            @close-modal="closeCardModal" />
     </main>
 </template>
 

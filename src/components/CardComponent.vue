@@ -11,7 +11,7 @@
 </script>
 
 <template>
-    <div id="yugi-card" class="col-6 col-md-4 col-lg-2 mb-4">
+    <div id="yugi-card" class="col-6 col-md-4 col-lg-2 mb-4" @click="$emit('click')">
         <div class="container-card">
             <div class="card-yugioh">
                 <div class="front">
