@@ -50,12 +50,14 @@
     </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 
     div img {
         height: 45px;
         cursor: pointer;
+        z-index: 2;
     }
+
 
     .form-select {
         background: linear-gradient(135deg, #d48f3b, #b76b29);

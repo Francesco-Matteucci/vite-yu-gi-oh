@@ -82,7 +82,8 @@
     }
 
     .card-title {
-        color: #fff;
+        color: #ffd700;
+        text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.3);
         font-size: 1rem;
         font-weight: bold;
     }
@@ -90,6 +91,7 @@
     .card-type {
         font-size: 0.9rem;
         font-weight: bold;
+        text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.3);
     }
 
     .card-title,

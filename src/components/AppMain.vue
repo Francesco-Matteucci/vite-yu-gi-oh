@@ -84,8 +84,16 @@
             <!-- Aggiungo la select degli archetipi -->
             <ArchetypeSelect @archetype-selected="handleArchetypeSelected" />
 
+            <img id="yugi" src="../assets/img/images-Photoroom.png" alt="">
+
             <!-- Mostro il numero totale di carte -->
             <CardCountComponent :totalCards="cards.length" />
+
+            <!-- Mostro un messaggio con l'archetipo scelto dall'utente-->
+
+            <p v-if="selectedArchetype" class="text-center mt-3 fs-4 archetype-text">
+                The list of cards with archetype: <strong>{{ selectedArchetype }}</strong>
+            </p>
 
             <!-- Visualizzo le carte -->
             <div class="row justify-content-center">
@@ -99,4 +107,22 @@
     </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+    .container {
+        position: relative;
+    }
+
+    .archetype-text {
+        color: #ffd700;
+        font-weight: bold;
+        text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    #yugi {
+        height: 120px;
+        position: absolute;
+        top: -51px;
+        left: 200px;
+        z-index: 1;
+    }
+</style>

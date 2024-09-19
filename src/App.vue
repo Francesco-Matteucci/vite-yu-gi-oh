@@ -22,6 +22,6 @@
 
 <style lang="scss">
   body {
-    background-color: #D48F3B;
+    background: linear-gradient(135deg, #d48f3b, #b76b29);
   }
 </style>

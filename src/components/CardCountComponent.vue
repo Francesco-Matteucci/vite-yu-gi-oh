@@ -19,6 +19,8 @@
 <style scoped>
     h4 {
         font-size: 1.25rem;
+        color: #ffd700;
         font-weight: bold;
+        text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.3);
     }
 </style>
