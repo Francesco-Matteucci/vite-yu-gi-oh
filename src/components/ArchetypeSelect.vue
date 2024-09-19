@@ -39,7 +39,7 @@
     <div class="mb-4">
         <label for="archetypeSelect" class="form-label text-white">Select Archetype</label>
         <select id="archetypeSelect" class="form-select" v-model="selectedArchetype" @change="onSelectArchetype">
-            <option value="">All Archetypes</option>
+            <option value="">Select your archetype</option>
             <option v-for="archetype in archetypes" :key="archetype.archetype_name" :value="archetype.archetype_name">
                 {{ archetype.archetype_name }}
             </option>

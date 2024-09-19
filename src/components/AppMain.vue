@@ -2,7 +2,7 @@
     import axios from 'axios';
     import CardComponent from './CardComponent.vue'
     import LoaderComponent from './LoaderComponent.vue'
-    import ArchetypeSelect from './ArchetypeSelect.vue';
+    import ArchetypeSelect from './ArchetypeSelect.vue'
 
     export default {
         name: 'AppMain',
@@ -26,45 +26,34 @@
             this.fetchCards();
         },
         methods: {
-            fetchCards() {
-                // Simulo un caricamento di 3 secondi
-                const minLoadingTime = 3000;
+            fetchCards(archetype = '') {
+                // Imposto il flag di caricamento su true
+                this.loading = true;
 
-                // Creo una variabile per tenere traccia del tempo iniziale
-                const startTime = Date.now();
+                // Se è stato selezionato un archetipo, aggiungiamolo alla query dell'API
+                const apiUrl = archetype ? `https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=${archetype}` : 'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=50&offset=0';
 
                 axios
-                    .get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=50&offset=0')
+                    .get(apiUrl)
                     .then((response) => {
-                        // Inserisco nell'array i dati ricevuti
+                        // Aggiorno i dati delle carte
                         this.cards = response.data.data;
                     })
                     .catch((error) => {
                         console.error('Errore nella chiamata API:', error);
                     })
                     .finally(() => {
-
-                        // Calcolo il tempo trascorso dalla chiamata API
-                        const elapsedTime = Date.now() - startTime;
-
-                        // Se il caricamento è stato troppo veloce, aspetto che passino i 3 secondi
-                        const remainingTime = minLoadingTime - elapsedTime;
-
-                        if (remainingTime > 0) {
-                            setTimeout(() => {
-                                this.loading = false;
-                            }, remainingTime);
-                        } else {
-                            // Nel caso il caricamento avesse gia impiegato almeno 3 secondi, nascondo il loader
+                        setTimeout(() => {
                             this.loading = false;
-                        }
+                        }, 3000);
                     });
             },
-            // Creo un metodo per gestire l'archetipo selezionato
             handleArchetypeSelected(archetype) {
                 this.selectedArchetype = archetype;
-                console.log("Archetipo selezionato:", this.selectedArchetype);
+                console.log('Archetipo selezionato:', archetype);
 
+                // Effettuo una chiamata API per filtrare le carte dell'archetipo selezionato
+                this.fetchCards(archetype);
             }
         }
     }
@@ -76,11 +65,15 @@
             <LoaderComponent />
         </div>
         <div v-else>
+            <!-- Aggiungo la select degli archetipi -->
             <ArchetypeSelect @archetype-selected="handleArchetypeSelected" />
 
+            <!-- Mostro il numero totale di carte -->
             <div class="text-end my-4 text-white">
                 <h4>Total Cards: {{ cards.length }}</h4>
             </div>
+
+            <!-- Visualizzo le carte -->
             <div class="row justify-content-center">
                 <CardComponent v-for="card in cards" :key="card.id" :card="card" />
             </div>
