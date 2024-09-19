@@ -4,6 +4,7 @@
     import LoaderComponent from './LoaderComponent.vue'
     import ArchetypeSelect from './ArchetypeSelect.vue'
     import CardDetailModal from './CardDetailModal.vue'
+    import CardCountComponent from './CardCountComponent.vue'
 
     export default {
         name: 'AppMain',
@@ -11,7 +12,8 @@
             CardComponent,
             LoaderComponent,
             ArchetypeSelect,
-            CardDetailModal
+            CardDetailModal,
+            CardCountComponent
         },
         data() {
             return {
@@ -83,9 +85,7 @@
             <ArchetypeSelect @archetype-selected="handleArchetypeSelected" />
 
             <!-- Mostro il numero totale di carte -->
-            <div class="text-end my-4 text-white">
-                <h4>Total Cards: {{ cards.length }}</h4>
-            </div>
+            <CardCountComponent :totalCards="cards.length" />
 
             <!-- Visualizzo le carte -->
             <div class="row justify-content-center">
